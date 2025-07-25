@@ -1,0 +1,25 @@
+name: Stock Alert
+on:
+  schedule:
+    - cron: '15,25,35,45,55 3-9 * * 1-5' # 9:15 AM to 3:25 PM IST (UTC: 3:45 AM to 9:55 AM)
+    - cron: '0,10,20,30 10 * * 1-5' # 3:00 PM to 3:30 PM IST (UTC: 10:00 AM to 10:30 AM)
+  workflow_dispatch: {} # Allows manual triggering for testing
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r stock-alert-bot/requirements.txt
+      - name: Run stock alert script
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        run: python stock-alert-bot/zone-trade-alert.py
