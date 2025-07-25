@@ -53,7 +53,7 @@ async def send_telegram_message(message: str):
 async def check_trades():
     # Check market hours
     now = datetime.now(IST)
-    if now.weekday() >= 5 or now.time() < time(9, 15) or now.time() > time(15, 30):
+    if now.weekday() >= 5 or now.time() < time(9, 15) or now.time() > time(23, 30):
         logger.info("Outside market hours (9:15 AM - 3:30 PM IST), exiting.")
         exit(0)
 
