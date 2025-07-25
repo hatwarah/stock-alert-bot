@@ -2,7 +2,7 @@ name: Stock Alert
 on:
   schedule:
     - cron: '15,25,35,45,55 3-9 * * 1-5' # 9:15 AM to 3:25 PM IST (UTC: 3:45 AM to 9:55 AM)
-    - cron: '0,10,20,30 10 * * 1-5' # 3:00 PM to 3:30 PM IST (UTC: 10:00 AM to 10:30 AM)
+    - cron: '0,10,20,30,40 10 * * 1-5' # 3:00 PM to 3:30 PM IST (UTC: 10:00 AM to 10:30 AM)
   workflow_dispatch: {} # Allows manual triggering for testing
 jobs:
   run-script:
