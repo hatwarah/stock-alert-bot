@@ -1,0 +1,4 @@
+aiohttp
+motor
+yfinance
+python-dotenv
